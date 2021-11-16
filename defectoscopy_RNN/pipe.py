@@ -1,4 +1,7 @@
 from eval import eval_model
+from model_params import batch_size, lr, epochs, n_layers, input_size, hidden_layer_size, output_size, bidirectional, \
+    dropout
+from processes import window, step, n_files_train, n_files_test
 
 import torch
 import mlflow
@@ -71,5 +74,12 @@ def train_pipeline(model, dataloader_list, optimizer, loss_func, num_epochs):
             mlflow.log_metric(key='train_loss_epoch', value=train_loss_epoch, step=idx_epoch)
             mlflow.log_metrics(metrics=metrics, step=idx_epoch)
             # mlflow.log_metrics(metrics={'avrg_train_loss': avrg_train_loss, 'avrg_test_loss': avrg_test_loss})
+
+            # трекаем параметры
+            params = {'batch_size': batch_size, 'lr': lr, 'num_epochs': epochs, 'n_layers': n_layers,
+                      'input_size': input_size, 'hidden_layer_size': hidden_layer_size,
+                      'output_size': output_size, 'bidirectional': bidirectional, 'dropout': dropout,
+                      'window': window, 'step': step, 'n_files_train': n_files_train, 'n_files_test': n_files_test}
+            mlflow.log_params(params=params)
 
         mlflow.end_run()

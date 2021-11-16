@@ -10,9 +10,9 @@ class CnnLstm(nn.Module):
         self.hidden_layer_size = hidden_layer_size
         self.conv = nn.Conv2d(1, 1, (3, 3), stride=2)
         self.bn2d = nn.BatchNorm2d(1)
-        self.bn1d = nn.BatchNorm1d(2379)
+        self.bn1d = nn.BatchNorm1d(1170)
         self.avrg2d = nn.AvgPool2d((3, 3), stride=2)
-        self.linear_cnn = nn.Linear(2379, input_size)
+        self.linear_cnn = nn.Linear(1170, input_size)
         self.bidirectional = bidirectional
         self.num_layers = num_layers
 
