@@ -23,8 +23,8 @@ torch.manual_seed(1411)
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 # dataloaders list
-ids_train = [int(x) for x in np.linspace(start=0, stop=200, num=18, endpoint=True)]
-ids_test = [int(x) for x in np.linspace(start=0, stop=50, num=18, endpoint=True)]
+ids_train = [int(x) for x in np.linspace(start=0, stop=18, num=18, endpoint=True)[:18]]
+ids_test = [int(x) for x in np.linspace(start=0, stop=18, num=18, endpoint=True)[:2]]
 dataloaders_list = []
 
 for idx_left_train, idx_right_train, idx_left_test, idx_right_test in zip(ids_train[:-1], ids_train[1:], ids_test[:-1],

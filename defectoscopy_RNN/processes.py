@@ -12,11 +12,11 @@ train_names = os.listdir(train_signal_path)
 test_names = os.listdir(test_signal_path)
 
 # train, test
-window = 500
-step = 100
+window = 50
+step = 2
 
-n_files_train = 200
-n_files_test = 50
+n_files_train = 18
+n_files_test = 18
 
 if __name__ == '__main__':
     parts_maker = DataParts(window=window, step=step, names_train=train_names, names_test=test_names,

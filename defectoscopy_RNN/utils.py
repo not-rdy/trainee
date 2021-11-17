@@ -63,10 +63,11 @@ class DataParts:
                 else:
                     if len(np.unique(df_train[idx_left:idx_right, -1])) == 2 and \
                             (0 in np.unique(df_train[idx_left:idx_right, -1])):
-                        x = df_train[idx_left:idx_right, :-1]
-                        y = df_train[idx_left:idx_right, -1][1]
-                        parts_x.append(torch.tensor(x, dtype=torch.float))
-                        parts_y.append(torch.tensor(y, dtype=torch.long))
+                        # x = df_train[idx_left:idx_right, :-1]
+                        # y = df_train[idx_left:idx_right, -1][1]
+                        # parts_x.append(torch.tensor(x, dtype=torch.float))
+                        # parts_y.append(torch.tensor(y, dtype=torch.long))
+                        pass
                     else:
                         if len(np.unique(df_train[idx_left:idx_right, -1])) > 2:
                             # parts_x.append(df_train[idx_left:idx_right, :-1])
