@@ -9,6 +9,8 @@ import torch.nn as nn
 from model import CnnLstm
 from dl import RNNData
 from pipe import train_pipeline
+from model_params import batch_size, lr, epochs, n_layers, input_size, hidden_layer_size, output_size, bidirectional, \
+    dropout
 
 train_preproc_path = 'C:/Users/rustem.kamilyanov/defectoscopy2/train/preproc'
 test_preproc_path = 'C:/Users/rustem.kamilyanov/defectoscopy2/test/preproc'
@@ -20,19 +22,9 @@ test_names = os.listdir(test_preproc_path)
 torch.manual_seed(1411)
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-batch_size = 16
-lr = 1e-5  # 1e-6, *1e-4
-num_epochs = 10  # *10
-n_layers = 3  # *1
-input_size = 642
-hidden_layer_size = 100  # 300, 50, *10
-output_size = 5
-bidirectional = True
-dropout = 0  # 0.2
-
 # dataloaders list
-ids_train = [int(x) for x in np.linspace(start=0, stop=500, num=18, endpoint=True)]
-ids_test = [int(x) for x in np.linspace(start=0, stop=50, num=18, endpoint=True)]
+ids_train = [int(x) for x in np.linspace(start=0, stop=18, num=18, endpoint=True)[:18]]
+ids_test = [int(x) for x in np.linspace(start=0, stop=18, num=18, endpoint=True)[:2]]
 dataloaders_list = []
 
 for idx_left_train, idx_right_train, idx_left_test, idx_right_test in zip(ids_train[:-1], ids_train[1:], ids_test[:-1],
@@ -73,4 +65,4 @@ w = torch.tensor([w0, w1, w2, w3, w4], dtype=torch.float32)
 loss_func = nn.CrossEntropyLoss(weight=w)
 
 train_pipeline(model=model, dataloader_list=dataloaders_list, optimizer=optimizer,
-               loss_func=loss_func, num_epochs=num_epochs)
+               loss_func=loss_func, num_epochs=epochs)

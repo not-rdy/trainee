@@ -1,0 +1,9 @@
+batch_size = 16
+lr = 1e-5
+epochs = 10
+n_layers = 1
+input_size = 200
+hidden_layer_size = 100
+output_size = 5
+bidirectional = True
+dropout = 0

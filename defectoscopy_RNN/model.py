@@ -8,11 +8,11 @@ class CnnLstm(nn.Module):
         super(CnnLstm, self).__init__()
 
         self.hidden_layer_size = hidden_layer_size
-        self.conv = nn.Conv2d(1, 1, (3, 3), stride=2)
+        self.conv2d = nn.Conv2d(1, 1, (3, 3), stride=2)
         self.bn2d = nn.BatchNorm2d(1)
-        self.bn1d = nn.BatchNorm1d(2379)
+        self.bn1d = nn.BatchNorm1d(195)
         self.avrg2d = nn.AvgPool2d((3, 3), stride=2)
-        self.linear_cnn = nn.Linear(2379, input_size)
+        self.linear_cnn = nn.Linear(195, input_size)
         self.bidirectional = bidirectional
         self.num_layers = num_layers
 
@@ -20,7 +20,7 @@ class CnnLstm(nn.Module):
         self.seq_conv = nn.ModuleList()
 
         for idx in range(2):
-            self.seq_conv.append(self.conv)
+            self.seq_conv.append(self.conv2d)
             self.seq_conv.append(self.bn2d)
             self.seq_conv.append(nn.ReLU())
             self.seq_conv.append(self.avrg2d)
