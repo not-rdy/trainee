@@ -2,3 +2,7 @@ mlruns
 venv
 .idea
 .ipynb_checkpoints
+.cache
+.ipython
+.jupyter
+.local
